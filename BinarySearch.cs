@@ -33,7 +33,7 @@ namespace GA_BinarySearch_MeiliZheng
         //Method
         public int RecursiveBinarySearch(int[] array, int left, int right, int target)
         {
-            //if the left index value greater that the right index value return -1; because the array in not in codered.
+            //if the left index value greater that the right index value return -1; because the array  un-ordered.
             if (left > right)
             {
                 return -1;
@@ -46,12 +46,12 @@ namespace GA_BinarySearch_MeiliZheng
             {
                 return mid;
             }
-            //else if mid index value less than target value do the recursive binary search on the right hale of the array.
+            //else if mid index value less than target value do the recursive binary search on the left hale of the array.
             else if (array[mid] < target)
             {
                 return RecursiveBinarySearch(array, target, mid + 1, right);
             }
-            // else, do the recursive binary search on the left half of the array.
+            // else, do the recursive binary search on the right half of the array.
             else
             {
                 return RecursiveBinarySearch(array, target, left, mid - 1);

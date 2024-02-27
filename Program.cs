@@ -23,3 +23,11 @@
         }
     }
 }
+
+//Please find the answer in README.
+//Include five questions related to binary search algorithm, such as:
+//What is binary search and how does it work?
+//What is the time complexity of binary search?
+//When is binary search preferred over linear search?
+//What are the key requirements for binary search to work correctly?
+//Can binary search be applied to unsorted arrays? Why or why not?
