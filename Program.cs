@@ -1,25 +1,54 @@
-﻿namespace GA_BinarySearch_MeiliZheng
+﻿using System.Diagnostics;
+
+namespace GA_BinarySearch_MeiliZheng
 {
     public class Program
     {
         static void Main(string[] args)
         {
             //int array
-            int[] array = { 12, 15, 6, 9, 7, 34, 5 };
+            int[] array = { 2, 4, 6, 9, 12, 23, 45, 60};
+            int target = 60;
             //Created a new instance with parameters
-            BinarySearch binarySearch = new BinarySearch(array, 0, array.Length - 1, 9);
-            //call the RecursiveBinarySearch method to search the target value
-            int result = binarySearch.RecursiveBinarySearch(array, 0, array.Length - 1, 9);
-            //if the result not equals -1 print out the target value
-            if (result != -1)
+            BinarySearch binarySearch = new BinarySearch();
+            //Created a new instance for stopwatch
+            Stopwatch stopwatch = new Stopwatch();   
+            //start stopwatch
+            stopwatch.Start();
+            //assign int interativeResult
+            int iterativeResult = binarySearch.IterativeBinarySearch(array, target);
+            //stop stopwatch
+            stopwatch.Stop();
+            //print out the result
+            Console.WriteLine("Iterative Binary Search:");
+            if(iterativeResult != -1) 
             {
-                Console.WriteLine("Element found at index: " + result);
+                Console.WriteLine($"Element found at index: {iterativeResult}");
             }
-            //else print out the message to notify user the element not found.
             else
             {
-                Console.WriteLine("Element not found in the array.");
+                Console.WriteLine("Element not fount.");
             }
+            //print out the total time used.
+            Console.WriteLine("Time taken: " + stopwatch.Elapsed);
+
+            // Measure time taken for Recursive Binary Search
+            stopwatch.Reset();
+            stopwatch.Start();
+            //use ResursiveBinarySeach find the target number.
+            int recursiveResult = binarySearch.RecursiveBinarySearch(array, 0, array.Length - 1, target);
+            stopwatch.Stop();
+            Console.WriteLine("\nRecursive Binary Search:");
+            if(recursiveResult != -1)
+            {
+                Console.WriteLine($"Element found at index: {recursiveResult}");
+            }
+            else
+            {
+                Console.WriteLine("Element not found.");
+            }
+            //print out the total time used.
+            Console.WriteLine("Time taken: " + stopwatch.Elapsed);
         }
     }
 }

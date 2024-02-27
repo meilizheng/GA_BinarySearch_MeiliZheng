@@ -16,6 +16,10 @@ namespace GA_BinarySearch_MeiliZheng
 
 
         //Constructor
+        public BinarySearch()
+        {
+
+        }
         public BinarySearch(int[] array, int left, int right, int target)
         {
             this.Array = array;
@@ -31,31 +35,56 @@ namespace GA_BinarySearch_MeiliZheng
         public int Target { get => target; set => target = value; }
 
         //Method
+        public int IterativeBinarySearch(int[] array, int target)
+        {
+            int left = 0;
+            int right = array.Length - 1;
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (array[mid] == target)
+                    return mid;
+
+                if (array[mid] < target)
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+
+            return -1; // Not found
+        }
+
         public int RecursiveBinarySearch(int[] array, int left, int right, int target)
         {
             //if the left index value greater that the right index value return -1; because the array  un-ordered.
             if (left > right)
             {
-                return -1;
+                return -1; // Not found
             }
+               
 
-            //assign the mid index value
-            int mid = (left + (right - left)) / 2;
-            //if mid index value equals to the target, return the mid index value. target found.
+            int mid = left + (right - left) / 2;
+
             if (array[mid] == target)
             {
                 return mid;
             }
-            //else if mid index value less than target value do the recursive binary search on the left hale of the array.
+                
+
             else if (array[mid] < target)
             {
-                return RecursiveBinarySearch(array, target, mid + 1, right);
+                return RecursiveBinarySearch(array, mid + 1, right, target);
             }
-            // else, do the recursive binary search on the right half of the array.
-            else
+                
+            
+            else if (array[mid] > target)
             {
-                return RecursiveBinarySearch(array, target, left, mid - 1);
+                return RecursiveBinarySearch(array, 0, mid - 1, target);
             }
+            return -1;
+
         }
     }
 }
